@@ -1,3 +1,4 @@
+let s:hlchunk_chars=get(g:, 'hlchunk_chars', ['>', '─', '╭', '│', '╰', '─', '>'])
 let s:opt = {'virt_text_pos': 'overlay', 'hl_mode': 'replace'}
 
 func! s:getpairpos() " [int, int]
@@ -32,38 +33,48 @@ func! hlchunk#hl_chunk(...)
 
     " 渲染beg行 end行
     let [lbeg, lend] = [getline(beg), getline(end)]
-    let [sbeg, send] = [len(substitute(lbeg, '\v^(\s*).*', '\1', '')), len(substitute(lend, '\v^(\s*).*', '\1', ''))]
+    let [lbeg, lend] = [substitute(lbeg, '\v^(\s*).*', '\1', ''), substitute(lend, '\v^(\s*).*', '\1', '')]
+    let [sbeg, send] = [0, 0]
+    for idx in range(len(lbeg))
+        let sbeg += lbeg[idx] =~ '\t' ? &shiftwidth : 1
+    endfor
+    for idx in range(len(lend))
+        let send += lend[idx] =~ '\t' ? &shiftwidth : 1
+    endfor
+    echo [sbeg, send]
 
     let slen = min([sbeg - &shiftwidth, send - &shiftwidth])
     let slen = max([slen, 0])
     let s:opt.virt_text_win_col = slen
 
     if sbeg == 1
-        let s:virt_text = '╭'
+        let s:virt_text = s:hlchunk_chars[2]
         let s:opt.virt_text = [[s:virt_text, 'HLIndentLine']]
         call nvim_buf_set_extmark(0, s:ns, beg - 1, 0, s:opt)
     endif
     if sbeg >= 2
-        let s:virt_text = '╭' . s:getchars(sbeg - 1 - slen, '─')
+        let s:virt_text = s:hlchunk_chars[2] . s:getchars(sbeg - 2 - slen, s:hlchunk_chars[1]) . s:hlchunk_chars[0]
         let s:opt.virt_text = [[s:virt_text, 'HLIndentLine']]
         call nvim_buf_set_extmark(0, s:ns, beg - 1, 0, s:opt)
     endif
 
     if send == 1
-        let s:virt_text = '╰'
+        let s:virt_text = s:hlchunk_chars[2]
         let s:opt.virt_text = [[s:virt_text, 'HLIndentLine']]
         call nvim_buf_set_extmark(0, s:ns, end - 1, 0, s:opt)
     endif
     if send >= 2
-        let s:virt_text = '╰' . s:getchars(send - 2 - slen, '─') . '>'
+        let s:virt_text = s:hlchunk_chars[4] . s:getchars(send - 2 - slen, s:hlchunk_chars[5]) . s:hlchunk_chars[6]
         let s:opt.virt_text = [[s:virt_text, 'HLIndentLine']]
         call nvim_buf_set_extmark(0, s:ns, end - 1, 0, s:opt)
     endif
 
     " 渲染中间行
+    let len = min([len(lbeg) - &shiftwidth, len(lend) - &shiftwidth])
+    let len = max([len, 0])
     for idx in range(startl + 1, endl - 1)
-        if getline(idx)[slen] == ' ' || len(getline(idx)) <= slen
-            let s:opt.virt_text = [['│', 'HLIndentLine']]
+        if getline(idx)[len] =~ '\s' || len(getline(idx)) <= len
+            let s:opt.virt_text = [[s:hlchunk_chars[3], 'HLIndentLine']]
             call nvim_buf_set_extmark(0, s:ns, idx - 1, 0, s:opt)
         endif
     endfor
