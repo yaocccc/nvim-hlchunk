@@ -3,8 +3,8 @@ hi HLIndentLine ctermfg=244
 let s:timerid = -1
 let s:delay = get(g:, 'hlchunk_time_delay', 50)
 let s:hlchunk_files = get(g:, 'hlchunk_files', '*.ts,*.js,*.json,*.go,*.c')
-let s:hlchunk_line_limit = get(g:, 'hlchunk_line_limit', 3000)
-let s:hlchunk_col_limit = get(g:, 'hlchunk_col_limit', 100)
+let s:hlchunk_line_limit = get(g:, 'hlchunk_line_limit', 5000)
+let s:hlchunk_col_limit = get(g:, 'hlchunk_col_limit', 500)
 
 exec('au CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files ..  ' call <SID>hlchunk()')
 exec('au BufEnter,TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files .. ' let b:hlchunk_enabled=<SID>check()')
