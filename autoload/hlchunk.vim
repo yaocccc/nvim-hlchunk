@@ -1,4 +1,4 @@
-let s:hlchunk_chars=get(g:, 'hlchunk_chars', ['>', '─', '╭', '│', '╰', '─', '>'])
+let s:hlchunk_chars=get(g:, 'hlchunk_chars', ['─', '─', '╭', '│', '╰', '─', '>'])
 let s:opt = {'virt_text_pos': 'overlay', 'hl_mode': 'replace'}
 
 func! s:getpairpos() " [int, int]
