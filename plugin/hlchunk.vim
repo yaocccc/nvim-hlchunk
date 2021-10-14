@@ -19,7 +19,6 @@ func s:hlchunk()
 endf
 
 func s:check()
-    echo 1
     if line("$") > s:hlchunk_line_limit
         return 0
     endif
