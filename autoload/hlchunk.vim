@@ -17,9 +17,7 @@ func! s:getchars(len, char)
 endf
 
 func! hlchunk#hl_chunk(...)
-    if exists('s:ns')
-        call nvim_buf_clear_namespace(0, s:ns, 0, -1)
-    endif
+    call hlchunk#clear_hl_chunk()
     let s:ns = nvim_create_namespace('hlchunk')
 
     let [beg, end] = s:getpairpos()
@@ -74,4 +72,10 @@ func! hlchunk#hl_chunk(...)
             call nvim_buf_set_extmark(0, s:ns, idx - 1, 0, s:opt)
         endif
     endfor
+endf
+
+func! hlchunk#clear_hl_chunk(...)
+    if exists('s:ns')
+        call nvim_buf_clear_namespace(0, s:ns, 0, -1)
+    endif
 endf

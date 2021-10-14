@@ -18,6 +18,8 @@ vim version: [vim-hlchunk](https://github.com/yaocccc/vim-hlchunk)
       let g:hlchunk_time_delay = 50
     " indentline chars(Anti-Clockwise) default ['>', '─', '╭', '│', '╰', '─', '>']
       let g:hlchunk_chars=['>', '─', '╭', '│', '╰', '─', '>']
+    " hlchunk_line_limit default 1000
+      let g:hlchunk_line_limit = 1000
 
   中文
     " 支持哪些文件 默认为 '*.ts,*.js,*.json,*.go,*.c'
@@ -28,4 +30,6 @@ vim version: [vim-hlchunk](https://github.com/yaocccc/vim-hlchunk)
       let g:hlchunk_time_delay = 50
     " 高亮线符号(逆时针) 默认为 ['>', '─', '╭', '│', '╰', '─', '>']
       let g:hlchunk_chars=['>', '─', '╭', '│', '╰', '─', '>']
+    " 最大支持行数 默认1000(超过1000行的文件不使用hlchunk)
+      let g:hlchunk_line_limit = 1000
 ```
