@@ -10,7 +10,7 @@ exec('au CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP ' .. s:h
 exec('au BufEnter,TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files .. ' let b:hlchunk_enabled=<SID>check()')
 
 func s:hlchunk()
-    if b:hlchunk_enabled == 1
+    if get(b:, 'hlchunk_enabled', 0) == 1
         call timer_stop(s:timerid)
         let s:timerid = timer_start(s:delay, 'hlchunk#hl_chunk', {'repeat': 1})
     else
