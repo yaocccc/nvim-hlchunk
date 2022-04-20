@@ -53,7 +53,7 @@ func! hlchunk#hl_chunk(...)
 
     " 渲染end行
     if end_space_len == 1
-        let s:virt_text = s:hlchunk_chars[2]
+        let s:virt_text = s:hlchunk_chars[4]
         let s:opt.virt_text = [[s:virt_text, 'HLIndentLine']]
         call nvim_buf_set_extmark(0, s:ns, end - 1, 0, s:opt)
     endif
