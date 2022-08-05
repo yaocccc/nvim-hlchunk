@@ -17,10 +17,8 @@ func! s:getchars(len, char)
 endf
 
 func! s:get_scrolled()
-    let virt_col_text = nvim_get_current_line()[:max([nvim_win_get_cursor(0)[1] - 1, 0])]
-    let virt_col_text = substitute(virt_col_text, '\t', s:getchars(&shiftwidth, ' '), 'g')
-    let virt_col = strwidth(virt_col_text)
-    let screen_col = screencol() - getwininfo(win_getid())[0].textoff - win_screenpos(0)[1]
+    let virt_col = nvim_eval_statusline("%v", {}).str - 1
+    let screen_col = screencol() - b:hlchunk_textoff - win_screenpos(0)[1]
     return virt_col - screen_col
 endf
 
@@ -46,6 +44,7 @@ func! hlchunk#hl_chunk(...)
     let space_len = min([beg_space_len - &shiftwidth, end_space_len - &shiftwidth])
     let space_len = max([space_len, 0])
     let s:opt.virt_text_win_col = space_len - s:get_scrolled()
+    if s:opt.virt_text_win_col < 0 | return | endif
 
     " 渲染beg行
     if beg_space_len == 1
