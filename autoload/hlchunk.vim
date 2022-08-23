@@ -18,7 +18,7 @@ endf
 
 func! s:get_scrolled()
     let virt_col = nvim_eval_statusline("%v", {}).str - 1
-    let screen_col = screencol() - get(b:, hlchunk_textoff, getwininfo(win_getid())[0].textoff) - win_screenpos(0)[1]
+    let screen_col = screencol() - get(b:, 'hlchunk_textoff', getwininfo(win_getid())[0].textoff) - win_screenpos(0)[1]
     return virt_col - screen_col
 endf
 
