@@ -22,6 +22,8 @@ vim version: [vim-hlchunk](https://github.com/yaocccc/vim-hlchunk)
       let g:hlchunk_line_limit = 5000
     " hlchunk_col_limit default 500
       let g:hlchunk_col_limit = 500
+    " hi style default 'ctermfg=244'
+      let g:hlchunk_hi_style = 'ctermfg=244'
 
   中文
     " 支持哪些文件 默认为 '*.ts,*.js,*.json,*.go,*.c'
@@ -36,4 +38,6 @@ vim version: [vim-hlchunk](https://github.com/yaocccc/vim-hlchunk)
       let g:hlchunk_line_limit = 5000
     " 最大支持列数 默认100(超过500列的文件不使用hlchunk)
       let g:hlchunk_col_limit = 500
+    " 高亮线的hi样式 默认为 'ctermfg=244'
+      let g:hlchunk_hi_style = 'ctermfg=244'
 ```
