@@ -10,8 +10,8 @@ vim version: [vim-hlchunk](https://github.com/yaocccc/vim-hlchunk)
 
 ```options
   ENGLISH
-    " what files are supported, default '*.ts,*.js,*.json,*.go,*.c'
-      let g:hlchunk_files = '*.ts,*.js,*.json,*.go,*.c'
+    " what files are supported, default '*.ts,*.js,*.json,*.go,*.c,*.cpp,*.rs,*.h,*.hpp,*.lua'
+      let g:hlchunk_files = '*.ts,*.js,*.json,*.go,*.c,*.cpp,*.rs,*.h,*.hpp,*.lua'
     " hlchunk indentline highlight
       au VimEnter * hi HLIndentLine ctermfg=244
     " delay default 50
@@ -26,8 +26,8 @@ vim version: [vim-hlchunk](https://github.com/yaocccc/vim-hlchunk)
       let g:hlchunk_hi_style = 'ctermfg=244'
 
   中文
-    " 支持哪些文件 默认为 '*.ts,*.js,*.json,*.go,*.c'
-      let g:hlchunk_files = '*.ts,*.js,*.json,*.go,*.c'
+    " 支持哪些文件 默认为 '*.ts,*.js,*.json,*.go,*.c,*.cpp,*.rs,*.h,*.hpp,*.lua'
+      let g:hlchunk_files = '*.ts,*.js,*.json,*.go,*.c,*.cpp,*.rs,*.h,*.hpp,*.lua'
     " 缩进线的高亮
       au VimEnter * hi HLIndentLine ctermfg=244
     " 延时 默认为50
