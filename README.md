@@ -41,3 +41,15 @@ vim version: [vim-hlchunk](https://github.com/yaocccc/vim-hlchunk)
     " 高亮线的hi样式 默认为 'ctermfg=244'
       let g:hlchunk_hi_style = 'ctermfg=244'
 ```
+
+## Support
+
+<a href="https://www.buymeacoffee.com/yaocccc" target="_blank">
+  <img src="https://github.com/yaocccc/yaocccc/raw/master/qr.png">
+</a>
+
+<br>
+
+<a href="https://www.buymeacoffee.com/yaocccc" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 200px !important;" >
+</a>
