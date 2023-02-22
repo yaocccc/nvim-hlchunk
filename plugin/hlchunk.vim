@@ -7,7 +7,6 @@ let s:hlchunk_hi_style = get(g:, 'hlchunk_hi_style', 'ctermfg=244')
 
 exec('au CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files ..  ' call <SID>hlchunk()')
 exec('au BufEnter,TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files .. ' let b:hlchunk_enabled=<SID>check()')
-exec('au BufEnter,BufRead,TextChanged,TextChangedI,TextChangedP,CursorHold ' .. s:hlchunk_files .. ' let b:hlchunk_textoff=getwininfo(win_getid())[0].textoff')
 exec('au WinScrolled * call <SID>hlchunk()')
 exec('hi HLIndentLine ' .. s:hlchunk_hi_style)
 
