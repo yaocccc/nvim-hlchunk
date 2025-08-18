@@ -6,11 +6,14 @@ let s:hlchunk_col_limit = get(g:, 'hlchunk_col_limit', 500)
 let s:hlchunk_hi_style = get(g:, 'hlchunk_hi_style', 'ctermfg=244')
 
 exec('au CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files ..  ' call <SID>hlchunk()')
-exec('au BufEnter,TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files .. ' let b:hlchunk_enabled=<SID>check()')
+exec('au TextChanged,TextChangedI,TextChangedP ' .. s:hlchunk_files .. ' let b:hlchunk_enabled=<SID>check()')
 exec('au WinScrolled * call <SID>hlchunk()')
 exec('hi HLIndentLine ' .. s:hlchunk_hi_style)
 
 func s:hlchunk()
+    if get(b:, 'hlchunk_enabled', -1) == -1
+        let b:hlchunk_enabled = s:check()
+    endif
     if get(b:, 'hlchunk_enabled', 0) == 1
         call timer_stop(s:timerid)
         let s:timerid = timer_start(s:delay, 'hlchunk#hl_chunk', {'repeat': 1})
